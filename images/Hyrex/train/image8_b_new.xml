@@ -1,0 +1,50 @@
+<annotation>
+	<folder>bunny</folder>
+	<filename>image8_b_new.jpg</filename>
+	<path>/home/ok/OAI/Bunnys/vgg_16_data/bunny/image8_b_new.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1280</width>
+		<height>720</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Rock Hyrex</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>225</xmin>
+			<ymin>31</ymin>
+			<xmax>466</xmax>
+			<ymax>193</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Rock Hyrex</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>597</xmin>
+			<ymin>218</ymin>
+			<xmax>766</xmax>
+			<ymax>415</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Rock Hyrex</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1</xmin>
+			<ymin>44</ymin>
+			<xmax>19</xmax>
+			<ymax>134</ymax>
+		</bndbox>
+	</object>
+</annotation>

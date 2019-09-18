@@ -1,0 +1,26 @@
+<annotation>
+	<folder>bunny</folder>
+	<filename>image25_b.jpg</filename>
+	<path>/home/ok/OAI/Bunnys/vgg_16_data/bunny/image25_b.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>480</width>
+		<height>360</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Rock Hyrex</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>183</xmin>
+			<ymin>67</ymin>
+			<xmax>319</xmax>
+			<ymax>256</ymax>
+		</bndbox>
+	</object>
+</annotation>
