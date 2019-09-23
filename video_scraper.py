@@ -12,7 +12,7 @@ def rock_hyrax_videos(yt, **kwargs):
         # ls =
         yield video['id']
 
-yt = googleapiclient.discovery.build('youtube', 'v3', developerKey='AIzaSyD4L4QecikWsKp-jttJnOAdEFhbxy85yQw')
+yt = googleapiclient.discovery.build('youtube', 'v3')
 
 for i in rock_hyrax_videos(yt):
     print (i)
