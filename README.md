@@ -1,4 +1,4 @@
-Rock hyrex detcetion and classification
+Rock hyrax detcetion and classification
 
 Classification with Keras amd TensorFlow, retraining inception_v3 (all layers but first 20), using train generator and test generator flow from directory as pipeline
 
