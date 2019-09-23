@@ -22,12 +22,12 @@ config.gpu_options.allow_growth = True  # dynamically grow the memory
 sess = tf.Session(config=config)
 
 start = time.time()
-PATH = "/home/ok/OAI/Bunnys/vgg_16_data"
+PATH = "/home/ok/OAI/Bunnys/RockHyrexDetection/Classification/vgg_16_data"
 #get folders
 folders = [f for f in listdir(PATH) if isdir(join(PATH, f))]
 
 # base_model = VGG16(weights='imagenet', include_top=False)
-base_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(299, 299, 3))
+base_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(500, 500, 3))
 
 new_model = base_model.output
 new_model = GlobalAveragePooling2D()(new_model)
@@ -51,12 +51,18 @@ end = time.time()
 print("model setup took: {}".format(str(end-start)))
 
 start = time.time()
-train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input) #included in our dependencies
+train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input, rotation_range=30,
+	zoom_range=0.15,
+	width_shift_range=0.2,
+	height_shift_range=0.2,
+	shear_range=0.15,
+	horizontal_flip=True,
+	fill_mode="nearest") #included in our dependencies
 
 train_generator=train_datagen.flow_from_directory(PATH,
-                                                 target_size=(299,299),
+                                                 target_size=(500,500),
                                                  color_mode='rgb',
-                                                 batch_size=40,
+                                                 batch_size=20,
                                                  class_mode='categorical',
                                                  shuffle=True)
 
@@ -86,7 +92,7 @@ print("training took: {}".format(str(end-start)))
 # plt.legend(['Train', 'Test'], loc='upper left')
 # plt.show()
 
-model.save("new_model_20layers")
+model.save("HyrexDetector")
 
 test_dir="/home/ok/Desktop/test"
 
@@ -94,7 +100,7 @@ test_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
 test_generator = test_datagen.flow_from_directory(
         test_dir,
-        target_size=(299, 299),
+        target_size=(500, 500),
         color_mode='rgb',
         class_mode='categorical',
         batch_size=1)
@@ -123,6 +129,13 @@ filenames=test_generator.filenames
 results=pd.DataFrame({"Filename":filenames,
                       "Predictions":predictions})
 results.to_csv("results.csv",index=False)
+
+lab0 = [x for x in range(len(filenames)) if filenames[x][:10]==labels[0]]
+lab1 = [x for x in range(len(filenames)) if filenames[x][:13]==folders[1][2:]]
+gt = np.zeros(nb_samples,dtype=int)
+gt[lab1]=1
+print("seccess: {0:.2f}%".format((sum(gt==predicted_class_indices)/len(predicted_class_indices))*100))
+
 
 
 
