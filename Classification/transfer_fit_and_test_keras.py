@@ -27,7 +27,7 @@ PATH = "/home/ok/OAI/Bunnys/RockHyrexDetection/Classification/vgg_16_data"
 folders = [f for f in listdir(PATH) if isdir(join(PATH, f))]
 
 # base_model = VGG16(weights='imagenet', include_top=False)
-base_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(500, 500, 3))
+base_model = InceptionV3(weights='imagenet', include_top=False, input_shape=(300, 450, 3))
 
 new_model = base_model.output
 new_model = GlobalAveragePooling2D()(new_model)
@@ -60,9 +60,9 @@ train_datagen=ImageDataGenerator(preprocessing_function=preprocess_input, rotati
 	fill_mode="nearest") #included in our dependencies
 
 train_generator=train_datagen.flow_from_directory(PATH,
-                                                 target_size=(500,500),
+                                                 target_size=(300, 450),
                                                  color_mode='rgb',
-                                                 batch_size=20,
+                                                 batch_size=30,
                                                  class_mode='categorical',
                                                  shuffle=True)
 
@@ -100,7 +100,7 @@ test_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
 test_generator = test_datagen.flow_from_directory(
         test_dir,
-        target_size=(500, 500),
+        target_size=(300, 450),
         color_mode='rgb',
         class_mode='categorical',
         batch_size=1)
