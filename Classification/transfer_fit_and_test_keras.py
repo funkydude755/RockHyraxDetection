@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Sep 24 18:15:02 2019
+
+@author: noasi
+"""
+
 from os import listdir
 from os.path import isfile, join, isdir
 import pandas as pd
@@ -22,7 +29,7 @@ config.gpu_options.allow_growth = True  # dynamically grow the memory
 sess = tf.Session(config=config)
 
 start = time.time()
-PATH = "/home/ok/OAI/Bunnys/RockHyrexDetection/Classification/vgg_16_data"
+PATH = "train"
 #get folders
 folders = [f for f in listdir(PATH) if isdir(join(PATH, f))]
 
@@ -92,9 +99,9 @@ print("training took: {}".format(str(end-start)))
 # plt.legend(['Train', 'Test'], loc='upper left')
 # plt.show()
 
-model.save("HyrexDetector")
+model.save("HyraxDetector")
 
-test_dir="/home/ok/Desktop/test"
+test_dir="test"
 
 test_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
@@ -130,8 +137,8 @@ results=pd.DataFrame({"Filename":filenames,
                       "Predictions":predictions})
 results.to_csv("results.csv",index=False)
 
-lab0 = [x for x in range(len(filenames)) if filenames[x][:10]==labels[0]]
-lab1 = [x for x in range(len(filenames)) if filenames[x][:13]==folders[1][2:]]
+lab0 = [x for x in range(len(filenames)) if filenames[x][:5]==labels[0]]
+lab1 = [x for x in range(len(filenames)) if filenames[x][:8]==labels[1]]
 gt = np.zeros(nb_samples,dtype=int)
 gt[lab1]=1
 print("seccess: {0:.2f}%".format((sum(gt==predicted_class_indices)/len(predicted_class_indices))*100))
